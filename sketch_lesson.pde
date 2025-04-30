@@ -8,14 +8,19 @@ color coral = #f59c9a;
 color peach = #ffbe98;
 color yellow = #ffe7ab;
 color green = #c5dba9;
+color blue = #96add6;
 float x1, y1, d1;
 float x2, y2, d2;
+
+float ballx, bally, balld;
+float vx, vy; //ball's velocity
+float ax, ay; //ball's gravity
 
 //key variables
 boolean wKey, aKey, sKey, dKey, upKey, leftKey, downKey, rightKey;
 
 void setup() {
-  size(600, 600);
+  size(600, 600, P2D);
   x1 = width/2;
   y1 = height/2;
   d1 = 100;
@@ -23,6 +28,16 @@ void setup() {
   x2 = width/2;
   y2 = height/2;
   d2 = 100;
+
+  ballx = width/2;
+  bally = height/2;
+  balld = 50;
+
+  vx = vx + ax;
+  vy = vy + ay;
+  
+  ax = 0;
+  ay = 1;
 }
 
 
@@ -44,6 +59,24 @@ void draw() {
   if (leftKey) x2 = x2 - 10;
   if (downKey) y2 = y2 + 10;
   if (rightKey) x2 = x2 + 10;
+
+  stroke(green);
+  fill(blue);
+  circle(ballx, bally, balld);
+
+  //movement
+  ballx = ballx + vx;
+  bally = bally + vy;
+  //ballx +- vx;
+  //bally +- vy;
+
+  //bouncing off walls
+  if (bally <= 0 || bally >= height) vy = -vy;
+  if (ballx <= 0 || ballx >= width) vx = -vx;
+  
+  if (ballx <= balld/2 || ballx >= width-balld/2) vx = -vx;
+  if(bally <= balld/2 || bally >= height-balld/2) vy = -vy; 
+
 }
 
 void keyPressed() {
