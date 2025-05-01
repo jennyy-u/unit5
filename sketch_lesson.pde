@@ -20,7 +20,7 @@ float ax, ay; //ball's gravity
 boolean wKey, aKey, sKey, dKey, upKey, leftKey, downKey, rightKey;
 
 void setup() {
-  size(600, 600, P2D);
+  size(800, 800, P2D);
   x1 = width/2;
   y1 = height/2;
   d1 = 100;
@@ -30,12 +30,15 @@ void setup() {
   d2 = 100;
 
   ballx = width/2;
-  bally = height/2;
+  bally = 50;
   balld = 50;
 
-  vx = vx + ax;
-  vy = vy + ay;
-  
+  //vx = vx + ax;
+  //vy = vy + ay;
+
+  vx = 2;
+  vy = 3;
+
   ax = 0;
   ay = 1;
 }
@@ -47,18 +50,20 @@ void draw() {
   stroke(coral);
   fill(pink);
   circle(x1, y1, d1);
-  if (wKey) y1 = y1 - 10;
-  if (aKey) x1 = x1 - 10;
-  if (sKey) y1 = y1 + 10;
-  if (dKey) x1 = x1 + 10;
+  if (wKey) y1 -= 10;
+  if (aKey) x1 -= 10;
+  if (sKey) y1 += 10;
+  if (dKey) x1 += 10;
+  textSize(40);
+  textAlign(CENTER, CENTER);
 
   stroke(peach);
   fill(green);
   circle(x2, y2, d2);
-  if (upKey) y2 = y2 - 10;
-  if (leftKey) x2 = x2 - 10;
-  if (downKey) y2 = y2 + 10;
-  if (rightKey) x2 = x2 + 10;
+  if (upKey) y2 -= 10;
+  if (leftKey) x2 -= 10;
+  if (downKey) y2 += 10;
+  if (rightKey) x2 += 10;
 
   stroke(green);
   fill(blue);
@@ -70,13 +75,42 @@ void draw() {
   //ballx +- vx;
   //bally +- vy;
 
-  //bouncing off walls
-  if (bally <= 0 || bally >= height) vy = -vy;
-  if (ballx <= 0 || ballx >= width) vx = -vx;
-  
-  if (ballx <= balld/2 || ballx >= width-balld/2) vx = -vx;
-  if(bally <= balld/2 || bally >= height-balld/2) vy = -vy; 
 
+  //bouncing code
+  if (bally <= 0) { //top
+    vy = vy * -0.9;
+    bally = 0;
+  }
+  if (bally >= height) { //bottom
+    vy = vy * -0.9;
+    bally = height;
+  }
+  if (ballx <= 0) {//right
+    vx = vx * -0.9;
+    ballx = 0;
+  }
+  if (ballx >= width) { //left
+    vx = vx * -0.9;
+    ballx = width;
+  }
+
+  //bouncing off walls
+  //if (bally <= 0 || bally >= height) vy = -vy;
+  //if (ballx <= 0 || ballx >= width) vx = -vx;
+
+  //if (ballx <= balld/2 || ballx >= width-balld/2) vx = -vx;
+  //if (bally <= balld/2 || bally >= height-balld/2) vy = -vy;
+
+  //bouncing off players
+  if (dist(x1, y1, ballx, bally) <= (d1/2 + balld/2)) {
+    vx = (ballx - x1)/5;
+    vy = (bally - y1)/5;
+  }
+
+  if (dist(x2, y2, ballx, bally) <= (d2/2 + balld/2)) {
+    vx = (ballx - x2)/5;
+    vy = (bally - y2)/5;
+  }
 }
 
 void keyPressed() {
