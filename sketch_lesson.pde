@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 //jenny yu
 //block 2-4
 //april 29, 2025
@@ -18,6 +20,11 @@ float ax, ay; //ball's gravity
 
 //key variables
 boolean wKey, aKey, sKey, dKey, upKey, leftKey, downKey, rightKey;
+
+//sound variables
+SoundFile fail;
+SoundFile success;
+SoundFile music;
 
 void setup() {
   size(800, 800, P2D);
@@ -41,6 +48,13 @@ void setup() {
 
   ax = 0;
   ay = 1;
+
+  fail = new SoundFile(this, "FAILURE.wav");
+  music = new SoundFile(this, "MUSIC.mp3");
+  success = new SoundFile(this, "SUCCESS.wav");
+
+  music.loop();
+  music.amp(0.5);
 }
 
 
@@ -105,11 +119,15 @@ void draw() {
   if (dist(x1, y1, ballx, bally) <= (d1/2 + balld/2)) {
     vx = (ballx - x1)/5;
     vy = (bally - y1)/5;
+    fail.play();
+    fail.stop();
   }
 
   if (dist(x2, y2, ballx, bally) <= (d2/2 + balld/2)) {
     vx = (ballx - x2)/5;
     vy = (bally - y2)/5;
+    success.play();
+    success.stop();
   }
 }
 
