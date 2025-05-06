@@ -5,9 +5,13 @@ import processing.sound.*;
 //april 29, 2025
 
 //global variables
+//mode = INTRO;
+//mode = GAME;
+//mode = GAMEOVER;
+
 color bblue = #dfeaee;
 color kpurple = #bbabd8;
-color kpink = #fdd7fc;
+color kppurple = #9670d1;
 color mdpink = #ce6f79;
 color mpink = #fbc4d3;
 color cdblue = #92c8e2;
@@ -28,18 +32,18 @@ SoundFile success;
 SoundFile music;
 
 void setup() {
-  size(800, 800, P2D);
+  size(800, 600, P2D);
   x1 = width/2;
   y1 = height/2;
-  d1 = 100;
+  d1 = 80;
 
   x2 = width/2;
   y2 = height/2;
-  d2 = 100;
+  d2 = 80;
 
   ballx = width/2;
   bally = 50;
-  balld = 50;
+  balld = 40;
 
   //vx = vx + ax;
   //vy = vy + ay;
@@ -60,9 +64,39 @@ void setup() {
 
 
 void draw() {
+
+  //if (mode == INTRO) {
+  //  intro();
+  //} else if (mode == GAME) {
+  //  game();
+  //} else if (mode == GAMEOVER) {
+  //  gameOver();
+  //} else {
+  //  println("ERROR! Mode is" + mode);
+  //}
+
+  //field
   background(bblue);
+  strokeWeight(5);
+  stroke(cdblue);
+  fill(bblue);
+  circle(400, 300, 80);
+  line(400, 0, 400, 600);
+
+  ellipse(100, 300, 50, 80);
+  ellipse(700, 300, 50, 80);
+
+  stroke(cdblue);
+  rect(-5, 180, 105, 240);
+  rect(700, 180, 105, 240);
+
+  rect(-5, 250, 40, 100);
+  rect(760, 250, 45, 100);
+
+
+  //balls
   strokeWeight(3);
-  stroke(kpink);
+  stroke(kppurple);
   fill(kpurple);
   circle(x1, y1, d1);
   if (wKey) y1 -= 10;
@@ -130,6 +164,8 @@ void draw() {
     success.play();
     success.stop();
   }
+
+  //scoring a goal
 }
 
 void keyPressed() {
