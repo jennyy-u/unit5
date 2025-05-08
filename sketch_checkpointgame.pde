@@ -18,9 +18,10 @@ color cdblue = #92c8e2;
 color cblue = #89aad3;
 float x1, y1, d1;
 float x2, y2, d2;
-float kscore, mscore;
-
 float ballx, bally, balld;
+
+int kscore, mscore;
+
 float vx, vy; //ball's velocity
 float ax, ay; //ball's gravity
 
