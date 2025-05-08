@@ -18,6 +18,7 @@ color cdblue = #92c8e2;
 color cblue = #89aad3;
 float x1, y1, d1;
 float x2, y2, d2;
+float kscore, mscore;
 
 float ballx, bally, balld;
 float vx, vy; //ball's velocity
@@ -53,6 +54,9 @@ void setup() {
 
   ax = 0;
   ay = 1;
+
+  mscore = 0;
+  kscore = 0;
 
   fail = new SoundFile(this, "FAILURE.wav");
   music = new SoundFile(this, "MUSIC.mp3");
@@ -105,6 +109,7 @@ void draw() {
   if (dKey) x1 += 10;
   textSize(40);
   textAlign(CENTER, CENTER);
+  text(kscore, width - 200, height/10);
 
   stroke(mdpink);
   fill(mpink);
@@ -113,6 +118,9 @@ void draw() {
   if (leftKey) x2 -= 10;
   if (downKey) y2 += 10;
   if (rightKey) x2 += 10;
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  text(mscore, width - 600, height/10);
 
   stroke(cdblue);
   fill(cblue);
@@ -166,6 +174,23 @@ void draw() {
   }
 
   //scoring a goal
+  if (ballx < 40 && bally > 255 && bally < 345) {
+    mscore = mscore + 1;
+    ballx = width/2;
+    bally = 300;
+    vx = 0;
+    vy = 0;
+  }
+
+  if (ballx > 760 && bally > 255 && bally < 345) {
+    kscore = kscore + 1;
+    ballx = width/2;
+    bally = 300;
+    vx = 0;
+    vy = 0;
+  }
+
+  //scores
 }
 
 void keyPressed() {
