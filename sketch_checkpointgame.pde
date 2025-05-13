@@ -119,16 +119,14 @@ void keyReleased() {
   if (keyCode == RIGHT) rightKey = false;
 }
 
-mouseReleased() {
- if (mouseX > 330 && mouseX < 470 && mouseY > 0 && mouseY < 50) {
-   mode = 1;
- }
- 
- if (mouseX > 0 && mouseX < 120 && mouseY > 0 && mouseY < 50) {
-   mode = 2;
-   textSize(100);
-   textAlign(CENTER, CENTER);
-   fill(bee);
- }
-   
+void mouseReleased() {
+
+  if (mouseX > 300 && mouseX < 500 && mouseY > 400 && mouseY < 460) {
+    mode = 0;
+  }
+
+
+  if (mouseX > 330 && mouseX < 470 && mouseY > 320 && mouseY < 380) {
+    mode = 1;
+  }
 }
