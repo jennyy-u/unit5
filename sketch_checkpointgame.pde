@@ -33,8 +33,6 @@ float ax, ay; //ball's gravity
 boolean wKey, aKey, sKey, dKey, upKey, leftKey, downKey, rightKey;
 
 //sound variables
-SoundFile fail;
-SoundFile success;
 SoundFile music;
 
 //mode framework
@@ -73,9 +71,7 @@ void setup() {
 
   mode = INTRO;
 
-  fail = new SoundFile(this, "FAILURE.wav");
-  music = new SoundFile(this, "MUSIC.mp3");
-  success = new SoundFile(this, "SUCCESS.wav");
+  music = new SoundFile(this, "tune.mp3");
 
   music.loop();
   music.amp(0.5);
@@ -128,5 +124,11 @@ void mouseReleased() {
 
   if (mouseX > 330 && mouseX < 470 && mouseY > 320 && mouseY < 380) {
     mode = 1;
+    mscore = 0;
+    kscore = 0;
+    x1 = 400;
+    y1= 300;
+    x2 = 400;
+    y2 = 300;
   }
 }
