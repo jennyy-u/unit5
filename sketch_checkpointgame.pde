@@ -84,6 +84,8 @@ void draw() {
     intro();
   } else if (mode == GAME) {
     game();
+  } else if (mode == PAUSE) {
+    pause();
   } else if (mode == GAMEOVER) {
     gameOver();
   } else {
@@ -130,5 +132,9 @@ void mouseReleased() {
     y1= 300;
     x2 = 400;
     y2 = 300;
+  }
+
+  if (mouseX > 50 && mouseX < 200 && mouseY > 525 && mouseY < 575) {
+    mode = 2;
   }
 }
