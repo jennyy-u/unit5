@@ -5,7 +5,7 @@
 //global variables
 
 //colour variables
-color dBlue = #e4ccb3;
+color dBlue = #276189;
 color blue = #92aac3;
 color green = #b8a750;
 color orange = #e2690d;
@@ -19,8 +19,16 @@ float ballx, bally, balld;
 float vx, vy; //velocity
 float ax, ay; //gravity
 
-//key variables
+//keyboard variables
 boolean leftKey, rightKey;
+
+//array variables
+int[] x; //declaration (naming it)
+int[] y;
+boolean[] alive;
+int brickd;
+int n;
+int tempx, tempy;
 
 //mode framework
 int mode;
@@ -34,12 +42,12 @@ void setup() {
   size(800, 800, P2D);
 
   px = width/2;
-  py = 800;
+  py = height;
   pd = 100;
 
   ballx = width/2;
-  bally = 50;
-  balld = 40
+  bally = 700;
+  balld = 20;
 
 
   vx = 2;
@@ -47,6 +55,27 @@ void setup() {
 
   ax = 0;
   ay = 1;
+
+  //set up array of bricks
+  brickd = 40;
+  n = 65;
+  x = new int[n]; //instantiation (choosing how many pages)
+  y = new int[n];
+  tempx = 100;
+  tempy = 100;
+
+  int i = 0;
+  while (i < n) {
+    x[i] = tempx;
+    y[i] = tempy;
+    tempx = tempx + 50;
+    if (tempx == 750) {
+      tempx = 100;
+      tempy = tempy + 60;
+    }
+    i = i + 1;
+  }
+
 
 
   mode = GAME;
