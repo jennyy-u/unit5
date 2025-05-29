@@ -5,19 +5,28 @@
 //global variables
 
 //colour variables
-color dBlue = #276189;
-color blue = #92aac3;
-color green = #b8a750;
-color orange = #e2690d;
-color yellow = #e3aa52;
-color sand = #feecc1;
 color white = #ffffff;
+color sandBG = #fffbf0;
+color tulipPink = #e37083;
+color babyPink = #f49aa2;
+color sun = #fccd86;
+color matcha = #a8bf8a;
+color blue = #89b7c2;
+color duskBlue = #4d7cbf;
+color lavendar = #bbb7e5;
+
+//font
+PFont fontKirby;
+PFont fontPlay;
+PFont fontHydrogenWhiskey;
 
 //game variables
 float px, py, pd;
 float ballx, bally, balld;
 float vx, vy; //velocity
 float ax, ay; //gravity
+int plives;
+int pscore;
 
 //keyboard variables
 boolean leftKey, rightKey;
@@ -40,7 +49,7 @@ final int GAMEOVER = 3;
 
 void setup() {
   size(800, 800, P2D);
-
+  
   px = width/2;
   py = height;
   pd = 100;
@@ -55,7 +64,15 @@ void setup() {
 
   ax = 0;
   ay = 1;
-
+  
+  
+  //font setup
+  fontPlay = createFont("Ch Games Black.otf", 32);
+  fontHydrogenWhiskey = createFont("Hydrogen Whiskey.otf", 32);
+  
+  plives = 3;
+  pscore = 0;
+  
   //set up array of bricks
   brickd = 40;
   n = 65;
@@ -63,11 +80,13 @@ void setup() {
   y = new int[n];
   tempx = 100;
   tempy = 100;
+  alive = new boolean[n];
 
   int i = 0;
   while (i < n) {
     x[i] = tempx;
     y[i] = tempy;
+    alive[i] = true;
     tempx = tempx + 50;
     if (tempx == 750) {
       tempx = 100;
@@ -78,7 +97,7 @@ void setup() {
 
 
 
-  mode = GAME;
+  mode = INTRO;
 }
 
 
@@ -112,5 +131,9 @@ void keyReleased() {
 void mouseReleased() {
   if (mouseX > 0 && mouseX < 800 && mouseY > 0 && mouseY < 800) {
     mode = 2;
+  }
+  
+  if (mouseX > 300 && mouseX < 500 && mouseY > 450 && mouseY < 500) {
+    mode = 1;
   }
 }
