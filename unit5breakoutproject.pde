@@ -13,6 +13,7 @@ color sun = #fccd86;
 color matcha = #a8bf8a;
 color blue = #89b7c2;
 color duskBlue = #4d7cbf;
+color navyBlue = #003265;
 color lavendar = #bbb7e5;
 
 //font
@@ -59,7 +60,7 @@ void setup() {
   balld = 20;
 
 
-  vx = 2;
+  vx = 0;
   vy = 2;
 
   ax = 0;
