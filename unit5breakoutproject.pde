@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 //jenny yu
 //block 2-4
 //may 26, 2025
@@ -47,6 +49,15 @@ final int GAME = 1;
 final int PAUSE = 2;
 final int GAMEOVER = 3;
 
+//gif variables
+PImage [] gif;
+int numberOfFrames;
+int f;
+
+//sound variables
+//soundFile music;
+SoundFile pop;
+
 
 void setup() {
   size(800, 800, P2D);
@@ -70,8 +81,9 @@ void setup() {
   //font setup
   fontPlay = createFont("Ch Games Black.otf", 32);
   fontHydrogenWhiskey = createFont("Hydrogen Whiskey.otf", 32);
+  fontKirby = createFont("kirbyss.otf", 100);
   
-  plives = 3;
+  plives = 5;
   pscore = 0;
   
   //set up array of bricks
@@ -95,7 +107,21 @@ void setup() {
     }
     i = i + 1;
   }
-
+  
+  //gif setup
+  numberOfFrames = 12;
+  gif = new PImage [numberOfFrames];
+  
+  int g = 0;
+  while (g < numberOfFrames) {
+    gif[g] = loadImage("frame_" + g + "_delay-0.07s.gif");
+    g++;
+  }
+  
+  //sound setup
+  pop = new SoundFile(this, "ballpop.mp3");
+  //music = ;
+  //music.loop();
 
 
   mode = INTRO;
