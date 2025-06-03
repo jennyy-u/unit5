@@ -26,7 +26,6 @@ void game() {
   ballx = ballx + vx;
   bally = bally + vy;
 
-
   //bouncing code
   if (bally <= 0) { //top
     vy = vy * -1.1;
@@ -51,7 +50,6 @@ void game() {
     vy = (bally - py)/5;
   }
 
-
   //bricks + bouncing off bricks
   int i = 0;
   while (i < n) {
@@ -61,7 +59,6 @@ void game() {
     i++;
   }
 
-
   //lives
   if (bally == 800) {
     delay(300);
@@ -69,9 +66,9 @@ void game() {
     bally = 600;
     vx = 0;
     vy = 3;
-
     plives = plives - 1;
   }
+  
   textFont(fontPlay);
   textAlign(CENTER, CENTER);
   fill(duskBlue);
@@ -80,12 +77,10 @@ void game() {
   text(plives, 430, 600);
 
 
-
   //win
-  if (pscore == 30) {
+  if (pscore == 20) {
     mode = GAMEOVER;
   }
-
 
   //lose
   if (plives == 0) {

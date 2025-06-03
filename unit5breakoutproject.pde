@@ -5,7 +5,6 @@ import processing.sound.*;
 //may 26, 2025
 
 //global variables
-
 //colour variables
 color white = #ffffff;
 color sandBG = #fffbf0;
@@ -18,7 +17,7 @@ color duskBlue = #4d7cbf;
 color navyBlue = #003265;
 color lavendar = #bbb7e5;
 
-//font
+//font variables
 PFont fontKirby;
 PFont fontPlay;
 PFont fontHydrogenWhiskey;
@@ -27,7 +26,6 @@ PFont fontHydrogenWhiskey;
 float px, py, pd;
 float ballx, bally, balld;
 float vx, vy; //velocity
-float ax, ay; //gravity
 int plives;
 int pscore;
 
@@ -53,11 +51,9 @@ final int GAMEOVER = 3;
 PImage [] gif;
 int numberOfFrames;
 int f;
-
 PImage [] gif2;
 int numberOfFrames2;
 int l;
-
 
 //sound variables
 SoundFile music;
@@ -77,12 +73,11 @@ void setup() {
   bally = 700;
   balld = 20;
 
-
   vx = 0;
   vy = 2;
-
-  ax = 0;
-  ay = 1;
+  
+  plives = 5;
+  pscore = 0;
 
 
   //font setup
@@ -90,8 +85,6 @@ void setup() {
   fontHydrogenWhiskey = createFont("Hydrogen Whiskey.otf", 32);
   fontKirby = createFont("kirbyss.otf", 100);
 
-  plives = 5;
-  pscore = 0;
 
   //set up array of bricks
   brickd = 40;
@@ -115,6 +108,7 @@ void setup() {
     i = i + 1;
   }
 
+
   //gif setup
   numberOfFrames = 12;
   gif = new PImage [numberOfFrames];
@@ -124,15 +118,16 @@ void setup() {
     gif[g] = loadImage("frame_" + g + "_delay-0.07s.gif");
     g++;
   }
-  
+
   numberOfFrames2 = 19;
-  gif = new PImage [numberOfFrames2];
-  
+  gif2 = new PImage [numberOfFrames2];
+
   int g2 = 0;
   while (g2 < numberOfFrames2) {
     gif[g2] = loadImage("frame_" + g2 + "_delay-0.4s.gif");
     g2++;
   }
+  
 
   //sound setup
   pop = new SoundFile(this, "ballpop.mp3");

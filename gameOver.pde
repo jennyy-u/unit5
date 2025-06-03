@@ -2,12 +2,12 @@ void gameOver() {
   background(navyBlue);
   music.stop();
 
-  if (pscore == 30) {
+  if (pscore == 20) {
     //win.stop();
     win.play();
     win.amp(1);
     image(gif[f], 0, 0, width, height);
-    f = f + 1;
+    if (frameCount % 3 == 0) f = f + 1;
     if (f == numberOfFrames) f= 0;
   }
 
@@ -15,8 +15,8 @@ void gameOver() {
     lose.stop();
     lose.play();
     lose.amp(1);
-    image(gif[l], 0, 0, width, height);
-    l = l + 1;
+    image(gif2[l], 0, 0, width, height);
+    if (frameCount % 4 == 0) l = l + 1;
     if (l == numberOfFrames2) l = 0;
   }
 }
