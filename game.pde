@@ -82,7 +82,7 @@ void game() {
 
 
   //win
-  if (pscore == 650) {
+  if (pscore == 30) {
     mode = GAMEOVER;
   }
 
@@ -111,5 +111,8 @@ void manageBrick(int i) {
     vy = (bally - y[i])/4;
     alive[i] = false;
     pscore += 10;
+    pop.stop();
+    pop.play();
+    pop.amp(1);
   }
 }

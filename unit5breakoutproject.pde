@@ -54,14 +54,21 @@ PImage [] gif;
 int numberOfFrames;
 int f;
 
+PImage [] gif2;
+int numberOfFrames2;
+int l;
+
+
 //sound variables
-//soundFile music;
+SoundFile music;
 SoundFile pop;
+SoundFile lose;
+SoundFile win;
 
 
 void setup() {
   size(800, 800, P2D);
-  
+
   px = width/2;
   py = height;
   pd = 100;
@@ -76,16 +83,16 @@ void setup() {
 
   ax = 0;
   ay = 1;
-  
-  
+
+
   //font setup
   fontPlay = createFont("Ch Games Black.otf", 32);
   fontHydrogenWhiskey = createFont("Hydrogen Whiskey.otf", 32);
   fontKirby = createFont("kirbyss.otf", 100);
-  
+
   plives = 5;
   pscore = 0;
-  
+
   //set up array of bricks
   brickd = 40;
   n = 65;
@@ -107,21 +114,33 @@ void setup() {
     }
     i = i + 1;
   }
-  
+
   //gif setup
   numberOfFrames = 12;
   gif = new PImage [numberOfFrames];
-  
+
   int g = 0;
   while (g < numberOfFrames) {
     gif[g] = loadImage("frame_" + g + "_delay-0.07s.gif");
     g++;
   }
   
+  numberOfFrames2 = 19;
+  gif = new PImage [numberOfFrames2];
+  
+  int g2 = 0;
+  while (g2 < numberOfFrames2) {
+    gif[g2] = loadImage("frame_" + g2 + "_delay-0.4s.gif");
+    g2++;
+  }
+
   //sound setup
   pop = new SoundFile(this, "ballpop.mp3");
-  //music = ;
-  //music.loop();
+  win = new SoundFile(this, "kirbys-victory-dance.mp3");
+  lose = new SoundFile(this, "kirby-death-noise.mp3");
+  music = new SoundFile(this, "5 P.M. - Animal Crossing_ New Leaf.mp3");
+  music.loop();
+  music.amp(0.5);
 
 
   mode = INTRO;
@@ -159,7 +178,7 @@ void mouseReleased() {
   if (mouseX > 0 && mouseX < 800 && mouseY > 0 && mouseY < 800) {
     mode = 2;
   }
-  
+
   if (mouseX > 300 && mouseX < 500 && mouseY > 450 && mouseY < 500) {
     mode = 1;
   }
