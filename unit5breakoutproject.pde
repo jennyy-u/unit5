@@ -75,7 +75,7 @@ void setup() {
 
   vx = 0;
   vy = 2;
-  
+
   plives = 5;
   pscore = 0;
 
@@ -124,10 +124,10 @@ void setup() {
 
   int g2 = 0;
   while (g2 < numberOfFrames2) {
-    gif[g2] = loadImage("frame_" + g2 + "_delay-0.4s.gif");
+    gif2[g2] = loadImage("frame_" + g2 + "_delay-0.4s.gif");
     g2++;
   }
-  
+
 
   //sound setup
   pop = new SoundFile(this, "ballpop.mp3");

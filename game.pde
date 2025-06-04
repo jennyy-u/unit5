@@ -68,7 +68,7 @@ void game() {
     vy = 3;
     plives = plives - 1;
   }
-  
+
   textFont(fontPlay);
   textAlign(CENTER, CENTER);
   fill(duskBlue);
@@ -78,12 +78,16 @@ void game() {
 
 
   //win
-  if (pscore == 20) {
+  if (pscore == 650) {
     mode = GAMEOVER;
+    win.play();
+    win.amp(0.5);
   }
 
   //lose
   if (plives == 0) {
+    lose.play();
+    lose.amp(0.5);
     mode = GAMEOVER;
   }
 }
